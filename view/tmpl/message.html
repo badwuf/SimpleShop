@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Заказ</title>
+	<style>
+		td{
+			border: none;
+			border-right: 1px solid black;
+		}
+		
+		td#sum{
+			border: none;
+			
+		}
+		
+		p{
+			margin-left: 20px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="client">
+		<span>Покупатель</span>
+		<p><span id="first_name">{{user.first_name}}</span><span id="last_name"> {{user.last_name}}</span></p>
+		<p><span id="email">{{user.email}}</span></p>
+		<p><span id="address">{{user.address}}</span></p>
+	</div>	
+		<table border='2'>
+			<tr> <td>Производитель</td> <td>Название</td> <td>Цена за ед.</td> <td>Количество</td> <td id="sum">Всего</td> </tr>
+			{% for i in 1..session.count %}
+				<tr> <td>{{session.items[i].brand}}</td> <td><a href="/item?item_id={{session.items[i].id}}" >{{session.items[i].title}}</a></td> <td id="price">{{session.items[i].price}}</td> <td>{{session.items[i].count}}</td> <td id="sum">{{session.items[i].count * session.items[i].price}}</td> </tr>
+			{% endfor %}
+		
+		</table>
+	<br><span>Всего на сумму {{total}}</span>
+</body>
+</html>

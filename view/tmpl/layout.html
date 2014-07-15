@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}{% endblock %}</title>
+		<link href="../view/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="../view/css/main.css" rel="stylesheet" type="text/css">
+		<script src="../view/js/jquery.js"></script>
+		<script src="../view/js/main.js"></script>
+	</head>
+	<body>
+		<div class = "container">
+			<header>
+				{% include 'parts/header.html' %}
+			</header>
+			<content>
+				{% block content %}{% endblock %}	
+			</content>
+		</div>
+		<script src="//code.jquery.com/jquery.js"></script>
+    <script src="../view/js/bootstrap.min.js"></script>
+	</body>
+</html>

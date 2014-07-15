@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% if session.items %}
+	<table class="table">
+		<tr> <td>Производитель</td> <td>Название</td> <td>Цена за ед.</td> <td>Количество</td> <td>Всего</td> <td></td> </tr>
+		{% for i in 1..session.count %}
+			<tr> <td>{{session.items[i].brand}}</td> <td>{{session.items[i].title}}</td> <td id="price">{{session.items[i].price}}</td> <td><input type="number" id="count" value="{{session.items[i].count}}" onchange="changeCount(this, {{session.items[i].id}})"></td> <td id="sum">{{session.items[i].count * session.items[i].price}}</td> <td onclick='deleteItem(this, {{session.items[i].id}})'><a href="#">Удалить</td> </tr>
+		{% endfor %}
+		<tr> <td></td> <td></td> <td></td> <td></td> <td id="total"></td> <td></td> </tr>
+	</table>
+	<a href="/order"><button class="btn">Заказать</button></a>
+{% else %}
+	<span> Корзина пуста </span>
+{% endif %}
+{% endblock %}

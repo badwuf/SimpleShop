@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+	<div class="row">
+		{% for item in items%}
+			
+			<div class="item col-md-4">
+				<img src="/serv/img?id={{item.id}}" class="img-responsive">
+				<a href='/item?item_id={{item.id}}'><p>{{item.title}} - {{item.brand}}</p></a>
+				
+				<p><span class="price">{{item.price}} грн.</span></p>
+				<p>{{item.diagonal}}"</p>
+				<p><span class="order" onclick="add({{item.id}})">В корзину!</span></p>
+			</div>
+			
+		{% endfor %}
+	</div>
+	
+	{% if page > 0 %}
+		<span><a href="/main?page={{page -1}}">Назад</a></span>
+	{% endif %}
+	<span><a href="/main?page={{page +1}}">Вперед</a></span>
+
+{% endblock %}

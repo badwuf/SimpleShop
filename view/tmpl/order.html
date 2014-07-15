@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+	<form action="/order/confirm" method="POST" >
+		Все поля обязательны к заполнению
+		<table class="table">
+			<tr>
+				<td><label>Имя:</label></td>
+				<td><input name="first_name" type="text" {% if re.first_name %} value="{{re.first_name }}" {% endif %}></td>			
+			</tr>
+			<tr>
+				<td><label>Фамилия: </label> </td>
+				<td><input name="last_name" type="text" {% if re.last_name %} value="{{re.last_name}}" {% endif %}></td>
+			</tr>
+			<tr>
+				<td><label>Адрес: </label> </td>
+				<td><input name="address" type="text" {% if re.address %} value="{{re.address}}" {% endif %}> </td>
+			</tr>
+			<tr>
+				<td><label>Email:</label></td>
+				<td><input name="email" type="text" {% if re.email %} value="{{re.email}}" {% endif %}></td>
+			</tr> 
+			<tr>
+				
+		</table>
+		
+	</form>
+		<button onclick="check()" class="button">
+				Заказать
+		</button>
+	<script>
+	function check(){
+		
+		first_name = $("input[name='first_name']").val();
+		last_name = $("input[name='last_name']").val();
+		address = $("input[name='address']").val();
+		email = $("input[name='email']").val();
+		if(first_name!="" && last_name!="" && address!=""){
+			if(email.match(/[A-Za-z0-9._]+@.+\..+/)){
+				$("form").submit();
+				
+			}else{
+				alert("неверный email.");
+			}
+			
+		}else{
+			alert("Заполнены не все поля.");
+		}
+		
+		
+		
+	}
+	</script>
+{% endblock %}

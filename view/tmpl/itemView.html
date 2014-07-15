@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+	<div class="img col-md-8">
+		<img src="/serv/img?id={{item.id}}">
+	</div>
+	<div class='description col-md-4'>
+		<p><span>{{item.title}}</span><a href="/item/edit?item_id={{item.id}}"><span class="mark glyphicon glyphicon-pencil"></span></a></p>
+		<p>Производитель: <span>{{item.brand}}</span></p>
+		<p>Диагональ: <span>{{item.diagonal}}</span>"</p>
+		<p>Цвет: <span>{{item.color}}</span></p>
+		<p>Описание: <span>{{item.description}}</span></p>
+		<p>Наличие Lan: <span>{% if item.lan==1%} Есть {% else %} Нету {% endif %}</span></p>
+		<p>Цена: <span>{{item.price}}</span> грн.</p>
+		<p><span class='order' onclick="add({{item.id}})">В корзину</span></p>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+	<form action="/item/{% if item %}edit?item_id={{item.id}}{% else %}add{% endif %}" method="POST" enctype="multipart/form-data">
+		
+			<input type="hidden" name="add" value="true">
+		
+		<table class="table">
+			<tr>
+				<td><label> Название: </label></td>
+				<td><input name="title" type="text" {% if item.title %} value="{{item.title}}" {% endif %}></td>			
+			</tr>
+			<tr>
+				<td><label> Производитель: </label> </td>
+				<td><input name="brand" type="text" {% if item.brand %} value="{{item.brand}}" {% endif %}></td>
+			</tr>
+			<tr>
+				<td><label> Описание: </label> </td>
+				<td><textarea rows="5" cols="50" name="description" >{% if item.description %}{{item.description}}{% endif %}</textarea> </td>
+			</tr>
+			<tr>
+				<td><label> Диагональ: </label></td>
+				<td><input name="diagonal" type="text" {% if item.diagonal %} value="{{item.diagonal}}" {% endif %}></td>
+			</tr> 
+			<tr>
+				<td><label> Цвет: </label></td>
+				<td> <input name="color" type="text" {% if item.color %} value="{{item.color}}"{% endif %}></td>
+			</tr> 
+			<tr>
+				<td><label> Наличие Lan: </label></td>
+				<td>Есть <input type="radio" name="lan" value="1" {% if item.lan and item.lan==1 %} checked="checked" {% endif %}><br>
+						Нету <input type="radio" name="lan" value="0" {% if item.lan and item.lan==0 %} checked="checked" {% endif %}></td>
+			</tr>  
+			<tr>
+				<td><label> Цена: </label></td>
+				<td> <input name="price" type="text" {% if item.price %} value="{{item.price}}" {% endif %}></td>
+			</tr> 
+			<tr>
+				<td><label> Изображение: </label></td>
+				<td> <input name="image" type="file" multiple="multiple"></td>
+				{% if item.photo %} <td><img class="prev" src="/serv/img?id={{item.id}}"></td> {% endif %}
+			</tr>
+				
+		</table>
+		<button type="submit" class="button">
+				Сохранить
+		</button>
+	</form>
+{% endblock %}
