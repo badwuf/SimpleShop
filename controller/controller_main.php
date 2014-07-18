@@ -11,8 +11,8 @@ class Controller_main extends Controller{
 	function action_main(){
 		$page = empty($_GET['page']) ? 0 : $_GET['page'];
 		$this->twig->addGlobal('page', $page);
-		$items = $this->model->getItems($page);
-		echo $this->twig->render('main.html', array('items'=>$items)); 
+		$res = $this->model->getItems($page);
+		echo $this->twig->render('main.html', array('items'=>$res['items'], 'pageLast'=>$res['pageLast'])); 
 	}
 }
 ?>

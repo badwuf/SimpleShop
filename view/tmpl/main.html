@@ -20,6 +20,7 @@
 	{% if page > 0 %}
 		<span><a href="/main?page={{page -1}}">Назад</a></span>
 	{% endif %}
-	<span><a href="/main?page={{page +1}}">Вперед</a></span>
-
+	{% if not pageLast %}
+		<span><a href="/main?page={{page +1}}">Вперед</a></span>
+	{% endif %}
 {% endblock %}
