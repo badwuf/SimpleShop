@@ -42,7 +42,7 @@ function reSum(){
 		});
 		$("#total").text(total);
 	}else{
-		$("#total").text(" ");
+		$("#total").text("");
 	}
 	
 }
@@ -73,9 +73,14 @@ function deleteItem(el, id){
 		if(res.stat=="OK"){
 			$(el).parent().remove();
 			reSum();
-			displayCountItems(res.gcount);
+			displayCountItems(res.count);
+			if(res.count==0){
+				$("#orderBtn").remove();
+			}
 		}
 	});
+	
+	
 	
 }
 
